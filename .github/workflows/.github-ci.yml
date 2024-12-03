@@ -28,11 +28,11 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      # Étape 5 : Déployer sur Netlify
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      # Étape 6 : Déployer sur Netlify
       - name: Deploy to Netlify
-        uses: netlify/actions/cli@v3
-        with:
-          args: deploy --prod
+        run: netlify deploy --prod --dir=.next --site=$NETLIFY_SITE_ID
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
