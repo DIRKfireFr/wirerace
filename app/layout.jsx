@@ -11,8 +11,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system">
-          <div className="container mx-auto mt-3">
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <div className="container mx-auto mt-3 md:p-0">
             <Header />
             <main>{children}</main>
           </div>

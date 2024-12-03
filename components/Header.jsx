@@ -3,13 +3,21 @@
 import React from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
+  const path = usePathname();
 
   return (
-    <div className="flex items-center justify-end">
+    <div className="flex items-center justify-end gap-3 p-3 md:p-0">
+      <Button asChild="true" variant="outline">
+        <Link href={`/${path === "/" ? "rules" : ""}`}>
+          {path === "/" ? "Go to rules" : "Go to LeaderBoard"}
+        </Link>
+      </Button>
       <Button
         variant="outline"
         size="icon"
