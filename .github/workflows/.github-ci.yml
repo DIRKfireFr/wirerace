@@ -32,7 +32,8 @@ jobs:
         run: npm install -g netlify-cli
 
       # Étape 6 : Déployer sur Netlify
-      - name: Deploy to Netlify
-        run: netlify deploy --prod --dir=.next --site=${{ secrets.NETLIFY_SITE_ID }}
+      - name: Trigger Netlify redeploy
+        run: |
+          curl -X POST ${{ secrets.NETLIFY_WEBHOOK }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
