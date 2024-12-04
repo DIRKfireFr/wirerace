@@ -3,40 +3,32 @@ name: CI/CD for Netlify Deployment
 on:
   push:
     branches:
-      - main
+      - main  # Déclencher ce workflow lorsque vous poussez sur la branche main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Étape 1 : Vérification du code source
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Étape 2 : Configuration de Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Utilisez la version de Node.js compatible avec votre projet
+          node-version: 18  # Utiliser la version de Node.js compatible avec votre projet
 
-      # Étape 3 : Installer les dépendances
       - name: Install dependencies
         run: npm install
 
-      # Étape 4 : Construire le projet
       - name: Build the project
         run: npm run build
 
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      # Étape 6 : Déployer sur Netlify
-      - name: Link to Netlify site
+      - name: Trigger Netlify redeploy
         run: |
-          netlify link --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --site ${{ secrets.NETLIFY_SITE_ID }}
-
-      - name: Deploy to Netlify
-        run: netlify deploy --prod --dir=.next --site ${{ secrets.NETLIFY_SITE_ID }}
+          curl -X POST ${{ secrets.NETLIFY_WEBHOOK }}  # Utiliser le webhook Netlify pour redeployer
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}  # Utiliser votre jeton d'authentification Netlify dans les secrets
