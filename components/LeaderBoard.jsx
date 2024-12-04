@@ -34,8 +34,8 @@ export default function LeaderBoard({ data }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="md:w-[100px]">Rank</TableHead>
-            <TableHead className="md:w-[100px]">Nickname</TableHead>
+            <TableHead className="">Rank</TableHead>
+            <TableHead className="">Nickname</TableHead>
             <TableHead className="text-right font-bold text-[#6831E1]">
               Points
             </TableHead>
@@ -45,10 +45,12 @@ export default function LeaderBoard({ data }) {
           {currentData.length > 0 ? (
             currentData.map((item, index) => (
               <TableRow key={item.id || index}>
-                <TableCell className="md:w-[100px] font-medium">
+                <TableCell className=" font-medium">
                   <LeaderBoardIcons index={startIndex + index + 1} />
                 </TableCell>
-                <TableCell className="md:w-[100px]">{item.nickname}</TableCell>
+                <TableCell className="">
+                  {item.nickname.substring(0, 25)}
+                </TableCell>
                 <TableCell className="text-right font-bold text-[#6831E1]">
                   {item.points} pts
                 </TableCell>

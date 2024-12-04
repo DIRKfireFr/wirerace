@@ -12,7 +12,7 @@ export default function Header() {
   const path = usePathname();
 
   return (
-    <div className="flex items-center justify-end gap-3 p-3 md:p-0">
+    <div className="container flex items-center justify-end gap-3">
       <Button asChild="true" variant="outline">
         <Link href={`/${path === "/" ? "rules" : ""}`}>
           {path === "/" ? "Go to rules" : "Go to LeaderBoard"}

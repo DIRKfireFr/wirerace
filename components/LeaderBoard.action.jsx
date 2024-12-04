@@ -18,17 +18,26 @@ export async function getLeaderBoard() {
   }
 }
 
-export async function addToLeaderBoard(nickname = "test", points = 300) {
+export async function addToLeaderBoard({ nickname, points }) {
+  if (!nickname || typeof nickname !== "string" || nickname.trim() === "") {
+    return { error: "Le pseudo est invalide.", status: 400 };
+  }
+
+  if (typeof points !== "number" || points <= 0) {
+    return { error: "Le nombre de points est invalide.", status: 400 };
+  }
+
   try {
-    const newEntry = await prisma.leaderboard.create({
+    const newEntry = await prisma.post.create({
       data: {
         nickname,
         points,
       },
     });
-    return { data: newEntry, status: 201 };
+
+    return { status: 201 };
   } catch (error) {
     console.error("Error adding to leaderboard:", error);
-    return { error: "Failed to add to leaderboard", status: 500 };
+    return { error: error, status: 500 };
   }
 }

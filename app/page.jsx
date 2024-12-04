@@ -17,7 +17,7 @@ export default async function Home() {
       />
       <h1 className="font-bold text-center text-3xl mb-1">Leaderboard</h1>
       <LeaderBoard data={data ?? []} />
-      {/* <AddScore /> */}
+      <AddScore />
     </main>
   );
 }
