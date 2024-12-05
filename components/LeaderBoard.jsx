@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -11,8 +11,20 @@ import {
 } from "./ui/table";
 import { Button } from "./ui/button";
 import LeaderBoardIcons from "./LeaderBoardIcons";
+import { getLeaderBoard } from "./LeaderBoard.action";
 
-export default function LeaderBoard({ data }) {
+export default function LeaderBoard() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const leaderboardData = await getLeaderBoard();
+      setData(leaderboardData ?? []);
+    };
+
+    fetchData();
+  }, []);
+
   const leaderboardData = data.data || [];
 
   const [currentPage, setCurrentPage] = useState(1);

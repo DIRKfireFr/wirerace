@@ -28,7 +28,7 @@ export async function addToLeaderBoard({ nickname, points }) {
   }
 
   try {
-    const newEntry = await prisma.post.create({
+    await prisma.post.create({
       data: {
         nickname,
         points,
