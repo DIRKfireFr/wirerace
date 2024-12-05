@@ -1,6 +1,10 @@
 import { User, Star, Square, Triangle, Circle } from "lucide-react";
 import React from "react";
 
+export const metadata = {
+  title: "WireRace - Rules",
+};
+
 export default function page() {
   return (
     <main className="container mx-auto">

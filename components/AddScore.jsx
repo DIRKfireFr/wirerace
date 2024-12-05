@@ -187,7 +187,7 @@ export default function AddScore() {
                 <Input
                   type="number"
                   placeholder="20"
-                  {...register("points", { required: true, min: 1, max: 100 })}
+                  {...register("points", { required: true, min: 1, max: 40 })}
                 />
               </div>
 
