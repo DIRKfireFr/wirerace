@@ -23,7 +23,7 @@ export default function LeaderBoard() {
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
   const leaderboardData = data.data || [];
 
@@ -42,12 +42,12 @@ export default function LeaderBoard() {
   };
 
   return (
-    <div className="mx-auto w-96 max-w-[400px] mb-3">
-      <Table>
+    <div className="mx-auto w-full max-w-md mb-3 overflow-auto">
+      <Table className="table-auto w-full">
         <TableHeader>
           <TableRow>
-            <TableHead className="">Rank</TableHead>
-            <TableHead className="">Nickname</TableHead>
+            <TableHead>Rank</TableHead>
+            <TableHead>Nickname</TableHead>
             <TableHead className="text-right font-bold text-[#6831E1]">
               Points
             </TableHead>
@@ -57,10 +57,10 @@ export default function LeaderBoard() {
           {currentData.length > 0 ? (
             currentData.map((item, index) => (
               <TableRow key={item.id || index}>
-                <TableCell className=" font-medium">
+                <TableCell className="font-medium">
                   <LeaderBoardIcons index={startIndex + index + 1} />
                 </TableCell>
-                <TableCell className="">
+                <TableCell className="truncate">
                   {item.nickname.substring(0, 25)}
                 </TableCell>
                 <TableCell className="text-right font-bold text-[#6831E1]">
@@ -71,14 +71,14 @@ export default function LeaderBoard() {
           ) : (
             <TableRow>
               <TableCell colSpan={3} className="text-center">
-                No data available
+                Submit your score !
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
 
-      <div className="flex items-center justify-between gap-3 flex-col md:gap-0 md:flex-row">
+      <div className="flex items-center justify-between gap-3 flex-wrap md:flex-nowrap">
         <div>
           <p className="text-sm text-gray-600">
             {currentPage} of {totalPages}

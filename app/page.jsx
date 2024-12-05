@@ -5,7 +5,7 @@ import Logo from "@/public/WIRERACE.png";
 
 export default async function Home() {
   return (
-    <main className="grid items-center">
+    <div className="grid items-center mt-3">
       <Image
         src={Logo}
         alt="Logo WireRace"
@@ -15,6 +15,6 @@ export default async function Home() {
       <h1 className="font-bold text-center text-3xl mb-1">Leaderboard</h1>
       <LeaderBoard />
       <AddScore />
-    </main>
+    </div>
   );
 }

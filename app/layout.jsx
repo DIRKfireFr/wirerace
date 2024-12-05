@@ -9,12 +9,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body>
         <ThemeProvider attribute="class" defaultTheme="light">
-          <div className="container mx-auto mt-3">
+          <main className="container mx-auto mt-3 p-6 md:p-0">
             <Header />
-            <main>{children}</main>
-          </div>
+            <div>{children}</div>
+          </main>
         </ThemeProvider>
       </body>
     </html>
