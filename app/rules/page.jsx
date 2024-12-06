@@ -1,5 +1,8 @@
 import { User, Star, Square, Triangle, Circle } from "lucide-react";
 import React from "react";
+import Players from "@/public/players.svg";
+import PlayersAges from "@/public/players age.svg";
+import Image from "next/image";
 
 export const metadata = {
   title: "WireRace - Rules",
@@ -17,10 +20,10 @@ export default function page() {
       <h2 className="text-3xl font-bold text-[#6831E1] mb-1">Preconisation</h2>
       <ul className="mb-5">
         <li className="list-none flex items-center gap-3">
-          <User /> 2 - 4 players
+          <Image src={Players} /> 2 - 4 players
         </li>
         <li className="list-none flex items-center gap-3">
-          <User /> 15+ years old
+          <Image src={PlayersAges} /> 15+ years old
         </li>
       </ul>
 
@@ -61,7 +64,15 @@ export default function page() {
       </ul>
 
       <h2 className="text-3xl font-bold text-[#6831E1] mb-1">Demo</h2>
-      <p>Video !!</p>
+      <iframe
+        className="w-full lg:w-1/2 h-80"
+        src="https://www.youtube.com/embed/loFDTpHO74o?si=yLiwcPtZKUGOrYYv"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
     </main>
   );
 }
